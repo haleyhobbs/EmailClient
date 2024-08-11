@@ -1,4 +1,3 @@
-//libraries
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -10,7 +9,6 @@ import java.io.IOException;
 import java.awt.event.ActionEvent;
 
 public class HomeGUI extends JFrame {
-    //fields
     private JPanel contentPane;
     private JButton btnLoginSecondAcct;
 
