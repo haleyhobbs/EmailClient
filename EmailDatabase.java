@@ -20,8 +20,6 @@ public class EmailDatabase {
         try {
             emails = fileHandler.readEmail(userEmail);
 
-            System.out.println("Loaded " + emails.size() + " emails for user: " + loggedInUser);
-
         } catch (IOException e) {
             emails = new ArrayList<>();
             e.printStackTrace();
@@ -34,8 +32,6 @@ public class EmailDatabase {
         }
         try {
             fileHandler.saveEmail(loggedInUser, emails);
-
-            System.out.println("Saved " + emails.size() + " emails for user: " + loggedInUser);
 
         } catch (IOException e) {
             e.printStackTrace();
