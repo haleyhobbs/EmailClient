@@ -1,6 +1,6 @@
 import java.io.File;
 
-public class main {
+public class Main {
 	public static void main(String[] args) {
 
 		// not sure if we want this -> deletes emails at startup **
