@@ -21,6 +21,8 @@ public class ComposeGUI extends JFrame {
 	private String recipient;
 	private String subject;
 	private String message;
+	private Email email;
+	private EmailDatabase emailDatabase;
 
 	//constructor when user doesn't enter recipient
 	public ComposeGUI(String sender) {
@@ -70,10 +72,9 @@ public class ComposeGUI extends JFrame {
 			this.message = textFieldMessage.getText();
 
 			//create email object with user-entered information
-			Email email = new Email(sender, this.recipient, this.subject, this.message);
+			email = new Email(sender, this.recipient, this.subject, this.message);
 			
 			//add email to database
-			EmailDatabase emailDatabase;
 			try {
 				emailDatabase = new EmailDatabase(sender);
 				emailDatabase.sendEmail(email);
