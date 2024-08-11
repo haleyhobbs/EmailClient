@@ -76,8 +76,6 @@ public class FileHandler {
             if (e.equals(email)) {
                 Path emailFile = userDir.resolve(email.getSubject() + ".txt");
 
-                System.out.println("Deleting email from: " + emailFile.toString());
-
                 emailDatabase.deleteEmail(userEmail, email, emailDatabase);
                 Files.delete(emailFile);
                 emails.remove(e);
