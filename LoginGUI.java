@@ -95,7 +95,7 @@ public class LoginGUI extends JFrame {
     }
 
     //check if entered username/password are valid
-    String checkCredentials(String address, String password) {
+    private String checkCredentials(String address, String password) {
         if ((address.equals("guest1@gmail.com") && password.equals("OOP1"))
                 || (address.equals("guest2@nyu.edu") && password.equals("OOP2")))
             return address;
