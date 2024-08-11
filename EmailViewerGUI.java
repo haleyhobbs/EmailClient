@@ -20,10 +20,11 @@ public class EmailViewerGUI extends JFrame {
     private EmailDatabase emailDatabase;
 
     // constructor
-    public EmailViewerGUI(Email email, FileHandler fileHandler, String userEmail) {
+    public EmailViewerGUI(Email email, FileHandler fileHandler, String userEmail, EmailDatabase emailDatabase) {
         this.email = email;
         this.fileHandler = fileHandler;
         this.userEmail = userEmail;
+        this.emailDatabase = emailDatabase;
 
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(100, 100, 450, 300);
@@ -77,13 +78,4 @@ public class EmailViewerGUI extends JFrame {
         setTitle("View Email");
     }
 
-    private void deleteEmail() {
-        try {
-            List<Email> emails = fileHandler.readEmail(userEmail);
-            emails.remove(email);
-        } catch (IOException e) {
-            System.out.println("Error deleting email.");
-            e.printStackTrace();
-        }
-    }
 }
