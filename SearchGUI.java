@@ -25,7 +25,7 @@ public class SearchGUI extends JFrame {
     private DefaultListModel<String> listModel;
     private JList<String> listEmails;
     private JScrollPane scrollPane;
-    private EmailDataBase emailDataBase;
+    private EmailDatabase emailDatabase;
     private FileHandler fileHandler;
     private String userEmail;
 
