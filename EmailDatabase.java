@@ -1,7 +1,6 @@
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.FileHandler;
 
 public class EmailDatabase {
 
@@ -9,13 +8,13 @@ public class EmailDatabase {
     private FileHandler fileHandler;
     private String loggedInUser;
 
-    public EmailDatabase(String sender) {
+    public EmailDatabase(String sender) throws IOException {
         fileHandler = new FileHandler();
         emails = new ArrayList<>();
         loggedInUser = sender;
     }
 
-    public void loadUserEmails(String userEmail) {
+    public void loadUserEmails(String userEmail) throws IOException {
         loggedInUser = userEmail;
         try {
             emails = fileHandler.readEmail(userEmail);
@@ -26,7 +25,7 @@ public class EmailDatabase {
         }
     }
 
-    public void saveUserEmails() {
+    public void saveUserEmails() throws IOException {
         if (loggedInUser == null) {
             throw new IllegalStateException("No user is logged in.");
         }
@@ -38,7 +37,7 @@ public class EmailDatabase {
         }
     }
 
-    public void sendEmail(Email email) {
+    public void sendEmail(Email email) throws IOException {
 
         EmailDatabase recipientEmailDB = new EmailDatabase(email.getRecipient());
         recipientEmailDB.loadUserEmails(email.getRecipient());
@@ -48,15 +47,13 @@ public class EmailDatabase {
 
     }
 
-    public List<Email> getInbox(String userEmail) {
+    public List<Email> getInbox(String userEmail) throws IOException {
         List<Email> inbox = new ArrayList<>();
         for (Email e : emails) {
             if (e.getRecipient().equals(userEmail)) {
                 inbox.add(e);
             }
         }
-
-        System.out.println("Inbox contains " + inbox.size() + " emails for user: " + loggedInUser);
 
         return inbox;
     }
@@ -66,8 +63,6 @@ public class EmailDatabase {
         emails.remove(emailDel);
 
         fileHandler.removeEmail(userEmail, emailDel, emailDataBase);
-
-        System.out.println("Deleting email: " + emailDel.getSubject());
 
         saveUserEmails();
     }

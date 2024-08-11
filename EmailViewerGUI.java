@@ -1,3 +1,4 @@
+
 //libraries
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -7,7 +8,7 @@ import java.util.List;
 import java.awt.event.ActionEvent;
 
 public class EmailViewerGUI extends JFrame {
-    //fields
+    // fields
     private JPanel contentPane;
     private JTextArea textArea;
     private JScrollPane scrollPane;
@@ -16,13 +17,13 @@ public class EmailViewerGUI extends JFrame {
     private Email email;
     private FileHandler fileHandler;
     private String userEmail;
- 
-    //constructor
+
+    // constructor
     public EmailViewerGUI(Email email, FileHandler fileHandler, String userEmail) {
         this.email = email;
         this.fileHandler = fileHandler;
         this.userEmail = userEmail;
-        
+
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(100, 100, 450, 300);
 
@@ -30,23 +31,23 @@ public class EmailViewerGUI extends JFrame {
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
         contentPane.setLayout(null);
-        
+
         JTextArea textArea = new JTextArea();
         textArea.setEditable(false);
         textArea.setText("From: " + email.getSender() + "\n"
-                        + "To: " + email.getRecipient() + "\n"
-                        + "Subject: " + email.getSubject() + "\n"
-                        + "Message: " + email.getEmailContent());
-        
+                + "To: " + email.getRecipient() + "\n"
+                + "Subject: " + email.getSubject() + "\n"
+                + "Message: " + email.getEmailContent());
+
         JScrollPane scrollPane = new JScrollPane(textArea);
         scrollPane.setBounds(5, 5, 440, 233);
         contentPane.add(scrollPane);
-        
+
         JButton btnClose = new JButton("Close");
         btnClose.setBounds(227, 237, 217, 29);
         btnClose.addActionListener(e -> dispose());
         contentPane.add(btnClose);
-        
+
         JButton btnDelete = new JButton("Delete");
         btnDelete.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -59,7 +60,7 @@ public class EmailViewerGUI extends JFrame {
 
         setTitle("View Email");
     }
-    
+
     private void deleteEmail() {
         try {
             List<Email> emails = fileHandler.readEmail(userEmail);

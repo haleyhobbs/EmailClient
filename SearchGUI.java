@@ -1,3 +1,4 @@
+
 //libraries
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,7 +17,7 @@ import java.util.List;
 import java.io.IOException;
 
 public class SearchGUI extends JFrame {
-    //fields
+    // fields
     private String userEmail;
     private FileHandler fileHandler;
     private JPanel contentPane;
@@ -76,8 +77,8 @@ public class SearchGUI extends JFrame {
         listEmails = new JList<>(listModel);
         listEmails.setBounds(48, 72, 416, 176);
         contentPane.add(listEmails);
-        
-        //display email when user double-clicks
+
+        // display email when user double-clicks
         listEmails.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -108,7 +109,7 @@ public class SearchGUI extends JFrame {
 
                 listModel.clear();
 
-                //if matching email found, display
+                // if matching email found, display
                 for (Email email : emails) {
                     String emailSubject = email.getSubject().toLowerCase();
                     if (emailSubject.contains(subject))

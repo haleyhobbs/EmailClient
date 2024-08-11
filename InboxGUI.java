@@ -29,7 +29,7 @@ public class InboxGUI extends JFrame {
     private String userEmail;
 
     // constructor
-    public InboxGUI(String userEmail) {
+    public InboxGUI(String userEmail) throws IOException {
         // load emails in database
         this.userEmail = userEmail;
         emailDatabase = new EmailDatabase(userEmail);

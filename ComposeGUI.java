@@ -9,6 +9,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 
 public class ComposeGUI extends JFrame {
@@ -77,8 +78,14 @@ public class ComposeGUI extends JFrame {
 			// create email object with user-entered information
 			Email email = new Email(sender, this.recipient, this.subject, this.message);
 			// add email to database
-			EmailDatabase emailDatabase = new EmailDatabase(sender);
-			emailDatabase.sendEmail(email);
+			EmailDatabase emailDatabase;
+			try {
+				emailDatabase = new EmailDatabase(sender);
+				emailDatabase.sendEmail(email);
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 
 			dispose();
 		});
