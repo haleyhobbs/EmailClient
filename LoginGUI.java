@@ -15,10 +15,17 @@ public class LoginGUI extends JFrame {
     private JTextField textFieldPassword;
     private String address;
     private String password;
+    private JLabel lblAddress;
+    private JLabel lblPassword;
+    private JLabel lblEmail;
+    private JButton btnLogin;
+    private JButton btnQuit;
+    private JButton btnCancel;
 
     public LoginGUI() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 450, 300);
+        
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
@@ -34,15 +41,15 @@ public class LoginGUI extends JFrame {
         contentPane.add(textFieldPassword);
         textFieldPassword.setColumns(10);
 
-        JLabel lblAddress = new JLabel("Email address:");
+        lblAddress = new JLabel("Email address:");
         lblAddress.setBounds(32, 91, 103, 16);
         contentPane.add(lblAddress);
 
-        JLabel lblPassword = new JLabel("Password:");
+        lblPassword = new JLabel("Password:");
         lblPassword.setBounds(32, 154, 90, 16);
         contentPane.add(lblPassword);
 
-        JButton btnLogin = new JButton("Login");
+        btnLogin = new JButton("Login");
         btnLogin.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 //get user-entered username/password and check
@@ -62,7 +69,7 @@ public class LoginGUI extends JFrame {
         btnLogin.setBounds(79, 215, 117, 29);
         contentPane.add(btnLogin);
 
-        JButton btnQuit = new JButton("Exit Program");
+        btnQuit = new JButton("Exit Program");
         btnQuit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 System.exit(0);
@@ -71,12 +78,12 @@ public class LoginGUI extends JFrame {
         btnQuit.setBounds(256, 215, 117, 29);
         contentPane.add(btnQuit);
 
-        JLabel lblEmail = new JLabel("Email");
+        lblEmail = new JLabel("Email");
         lblEmail.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
         lblEmail.setBounds(181, 17, 90, 44);
         contentPane.add(lblEmail);
 
-        JButton btnCancel = new JButton("X");
+        btnCancel = new JButton("X");
         btnCancel.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 dispose();
