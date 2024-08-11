@@ -43,18 +43,15 @@ public class EmailViewerGUI extends JFrame {
         scrollPane.setBounds(5, 5, 440, 233);
         contentPane.add(scrollPane);
 
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
-
-        // Add the Reply button
         JButton btnReply = new JButton("Reply");
+        btnReply.setBounds(10, 240, 100, 30);
         btnReply.addActionListener(e -> {
             // Open the ComposeGUI with the sender's email as the recipient
             ComposeGUI composeGUI = new ComposeGUI(userEmail, email.getSender());
             composeGUI.setVisible(true);
             dispose(); // Close the email viewer
         });
-        buttonPanel.add(btnReply);
+        contentPane.add(btnReply);
 
         JButton btnClose = new JButton("Close");
         btnClose.setBounds(227, 237, 217, 29);
@@ -68,7 +65,7 @@ public class EmailViewerGUI extends JFrame {
                 dispose();
             }
         });
-        btnDelete.setBounds(5, 237, 224, 29);
+        btnDelete.setBounds(230, 240, 100, 30);
         contentPane.add(btnDelete);
 
         setTitle("View Email");
