@@ -1,3 +1,4 @@
+//libraries
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -9,10 +10,11 @@ import java.io.IOException;
 import java.awt.event.ActionEvent;
 
 public class HomeGUI extends JFrame {
+    //fields
     private JPanel contentPane;
+    private JButton btnLoginSecondAcct;
 
     public HomeGUI(String userEmail) {
-
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 450, 300);
         contentPane = new JPanel();
@@ -20,6 +22,7 @@ public class HomeGUI extends JFrame {
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
+        //if user wants to login to second account, start with new login gui
         JButton btnLoginSecondAcct = new JButton("Login to another account");
         btnLoginSecondAcct.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -38,7 +41,7 @@ public class HomeGUI extends JFrame {
         JButton btnCompose = new JButton("Compose email");
         btnCompose.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                ComposeGUI composeFrame = new ComposeGUI(userEmail); // these changed
+                ComposeGUI composeFrame = new ComposeGUI(userEmail);
                 composeFrame.setVisible(true);
             }
         });
