@@ -41,4 +41,14 @@ public class EmailDatabase {
             e.printStackTrace();
         }
     }
+
+    public void sendEmail(Email email) {
+
+        EmailDatabase recipientEmailDB = new EmailDatabase(email.getRecipient());
+        recipientEmailDB.loadUserEmails(email.getRecipient());
+        recipientEmailDB.emails.add(email);
+
+        recipientEmailDB.saveUserEmails();
+
+    }
 }
