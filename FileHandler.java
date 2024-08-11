@@ -5,9 +5,19 @@ import java.util.List;
 
 public class FileHandler {
     private static final String EMAIL_DIR = "emails";
+    private List<Email> emails;
+    private boolean emailDeleted;
+    private Path path;
+    private Path userDir;
+    private Path emailFile;
+    private StringBuilder emailContent;
+    private String line;
+    private String sender;
+    private String recipient;
+    private String subject;
 
     public FileHandler() {
-        Path path = Paths.get(EMAIL_DIR);
+        path = Paths.get(EMAIL_DIR);
         if (!Files.exists(path)) {
             try {
                 Files.createDirectory(path);
@@ -19,13 +29,13 @@ public class FileHandler {
 
     //save information in email to database
     public void saveEmail(String userEmail, List<Email> emails) throws IOException {
-        Path userDir = Paths.get(EMAIL_DIR, userEmail);
+        userDir = Paths.get(EMAIL_DIR, userEmail);
         
         if (!Files.exists(userDir)) 
             Files.createDirectory(userDir);
 
         for (Email email : emails) {
-            Path emailFile = userDir.resolve(email.getSubject() + ".txt"); // Using subject as filename
+            emailFile = userDir.resolve(email.getSubject() + ".txt"); // Using subject as filename
             try (BufferedWriter writer = Files.newBufferedWriter(emailFile)) {
                 writer.write("From: " + email.getSender() + "\n");
                 writer.write("To: " + email.getRecipient() + "\n");
@@ -37,18 +47,17 @@ public class FileHandler {
     }
 
     public List<Email> readEmail(String userEmail) throws IOException {
-        List<Email> emails = new ArrayList<>();
-        Path userDir = Paths.get(EMAIL_DIR, userEmail);
+        emails = new ArrayList<>();
+        userDir = Paths.get(EMAIL_DIR, userEmail);
         if (Files.exists(userDir)) {
             try (DirectoryStream<Path> stream = Files.newDirectoryStream(userDir)) {
                 for (Path entry : stream) {
                     if (Files.isRegularFile(entry)) {
                         try (BufferedReader reader = Files.newBufferedReader(entry)) {
-                            String sender = reader.readLine().split(": ")[1];
-                            String recipient = reader.readLine().split(": ")[1];
-                            String subject = reader.readLine().split(": ")[1];
-                            StringBuilder emailContent = new StringBuilder();
-                            String line;
+                            sender = reader.readLine().split(": ")[1];
+                            recipient = reader.readLine().split(": ")[1];
+                            subject = reader.readLine().split(": ")[1];
+                            emailContent = new StringBuilder();
                             while ((line = reader.readLine()) != null)
                                 emailContent.append(line).append("\n");
                             emails.add(new Email(sender, recipient, subject, emailContent.toString()));
@@ -62,13 +71,13 @@ public class FileHandler {
 
     //remove email from database
     public void removeEmail(String userEmail, Email email, EmailDatabase emailDatabase) throws IOException {
-        List<Email> emails = emailDatabase.getInbox(userEmail);
-        Path userDir = Paths.get(EMAIL_DIR, userEmail);
-        boolean emailDeleted = false;
+        emails = emailDatabase.getInbox(userEmail);
+        userDir = Paths.get(EMAIL_DIR, userEmail);
+        emailDeleted = false;
 
         for (Email e : emails) {
             if (e.equals(email)) {
-                Path emailFile = userDir.resolve(email.getSubject() + ".txt");
+                emailFile = userDir.resolve(email.getSubject() + ".txt");
                 emailDatabase.deleteEmail(userEmail, email, emailDatabase);
                 Files.delete(emailFile);
                 emails.remove(e);
