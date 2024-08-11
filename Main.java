@@ -1,9 +1,12 @@
 import java.io.File;
 
 public class Main {
+	private File emailDir;
+	private File[] files;
+	
 	public static void main(String[] args) {
 		//delete emails at startup
-		File emailDir = new File("emails");
+		emailDir = new File("emails");
 		deleteDirectory(emailDir);
 
 		//initialize and show login frame upon running program
@@ -14,7 +17,7 @@ public class Main {
 	//delete emails at startup
 	private static void deleteDirectory(File file) {
 		if (file.isDirectory()) {
-			File[] files = file.listFiles();
+			files = file.listFiles();
 			if (files != null) {
 				for (File f : files)
 					deleteDirectory(f);
