@@ -27,4 +27,18 @@ public class EmailDatabase {
             e.printStackTrace();
         }
     }
+
+    public void saveUserEmails() {
+        if (loggedInUser == null) {
+            throw new IllegalStateException("No user is logged in.");
+        }
+        try {
+            fileHandler.saveEmail(loggedInUser, emails);
+
+            System.out.println("Saved " + emails.size() + " emails for user: " + loggedInUser);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
