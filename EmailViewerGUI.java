@@ -30,7 +30,7 @@ public class EmailViewerGUI extends JFrame {
             //automatically open the new ComposeGUI with the sender's email as the recipient
             ComposeGUI composeGUI = new ComposeGUI(userEmail, email.getSender());
             composeGUI.setVisible(true);
-            dispose(); // Close the email viewer
+            dispose();
         });
         contentPane.add(btnReply);
 
