@@ -66,7 +66,7 @@ public class FileHandler {
         return emails;
     }
 
-    public void removeEmail(String userEmail, Email email, EmailDataBase emailDatabase) throws IOException {
+    public void removeEmail(String userEmail, Email email, EmailDatabase emailDatabase) throws IOException {
 
         List<Email> emails = emailDatabase.getInbox(userEmail);
         Path userDir = Paths.get(EMAIL_DIR, userEmail);
