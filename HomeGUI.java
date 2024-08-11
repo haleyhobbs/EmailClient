@@ -15,8 +15,11 @@ public class HomeGUI extends JFrame {
     private JButton btnCompose;
     private JButton btnInbox;
     private JButton btnLogout;
+    private JButton btnSearch;
     private JLabel lblEmail;
     private JLabel lblAcctName;
+    private InboxGUI inboxFrame;
+    private FileHandler fileHandler;
 
     public HomeGUI(String userEmail) {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -55,7 +58,6 @@ public class HomeGUI extends JFrame {
         btnInbox = new JButton("View inbox");
         btnInbox.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                InboxGUI inboxFrame;
                 try {
                     inboxFrame = new InboxGUI(userEmail);
                     inboxFrame.setVisible(true);
@@ -67,10 +69,10 @@ public class HomeGUI extends JFrame {
         btnInbox.setBounds(124, 109, 196, 29);
         contentPane.add(btnInbox);
 
-        JButton btnSearch = new JButton("Search");
+        btnSearch = new JButton("Search");
         btnSearch.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                FileHandler fileHandler = new FileHandler();
+                fileHandler = new FileHandler();
                 SearchGUI searchFrame = new SearchGUI(userEmail, fileHandler);
                 searchFrame.setVisible(true);
             }
