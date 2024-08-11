@@ -62,8 +62,6 @@ public class EmailDatabase {
 
         emails.remove(emailDel);
 
-        fileHandler.removeEmail(userEmail, emailDel, emailDataBase);
-
         saveUserEmails();
     }
 }
