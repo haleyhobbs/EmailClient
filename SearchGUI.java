@@ -13,6 +13,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JTextField;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.io.IOException;
 
@@ -20,6 +22,7 @@ public class SearchGUI extends JFrame {
     // fields
     private String userEmail;
     private FileHandler fileHandler;
+    private List<Email> searchResults;
 
     private JPanel contentPane;
     private JLabel lblSubjectSearch;
@@ -61,9 +64,10 @@ public class SearchGUI extends JFrame {
         contentPane.add(btnCancel);
 
         btnSearch = new JButton("Search");
+
         btnSearch.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                performSearch();
+                searchResults = performSearch();
             }
         });
         btnSearch.setBounds(174, 42, 100, 26);
@@ -71,41 +75,38 @@ public class SearchGUI extends JFrame {
 
         listModel = new DefaultListModel<>();
 
-        scrollPane = new JScrollPane();
+        listEmails = new JList<>(listModel);
+
+        JScrollPane scrollPane = new JScrollPane(listEmails);
         scrollPane.setBounds(6, 70, 438, 196);
         contentPane.add(scrollPane);
 
-        listEmails = new JList<>(listModel);
-        listEmails.setBounds(48, 72, 416, 176);
-        contentPane.add(listEmails);
+        // display email
 
-        // display email when user double-clicks
         listEmails.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+
                 if (e.getClickCount() == 2) {
                     int index = listEmails.getSelectedIndex();
-                    if (index >= 0) {
-                        try {
-                            List<Email> emails = fileHandler.readEmail(userEmail);
-                            Email selectedEmail = emails.get(index);
-                            new EmailViewerGUI(selectedEmail, fileHandler, userEmail).setVisible(true);
-                        } catch (IOException ex) {
-                            System.out.println("Error reading emails.");
-                            ex.printStackTrace();
-                        }
+
+                    if (index >= 0 && index < searchResults.size()) {
+                        System.out.print(index);
+                        Email email = searchResults.get(index);
+                        new EmailViewerGUI(email, fileHandler, userEmail).setVisible(true);
                     }
                 }
             }
         });
     }
 
-    private void performSearch() {
+    private List<Email> performSearch() {
         String subject = textFieldSubjectSearch.getText().trim().toLowerCase();
+        List<Email> searchResults = new ArrayList<>();
 
         if (!subject.isEmpty()) {
             try {
-                FileHandler fileHandler = new FileHandler();
+
                 List<Email> emails = fileHandler.readEmail(userEmail);
 
                 listModel.clear();
@@ -113,8 +114,10 @@ public class SearchGUI extends JFrame {
                 // if matching email found, display
                 for (Email email : emails) {
                     String emailSubject = email.getSubject().toLowerCase();
-                    if (emailSubject.contains(subject))
+                    if (emailSubject.contains(subject)) {
                         listModel.addElement("From: " + email.getSender() + " - Subject: " + email.getSubject());
+                        searchResults.add(email);
+                    }
                 }
                 if (listModel.isEmpty())
                     listModel.addElement("No emails found with subject containing: " + subject);
@@ -123,5 +126,7 @@ public class SearchGUI extends JFrame {
                 e.printStackTrace();
             }
         }
+
+        return searchResults;
     }
 }

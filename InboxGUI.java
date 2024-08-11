@@ -49,7 +49,6 @@ public class InboxGUI extends JFrame {
         contentPane.add(lblInbox);
 
         List<Email> inbox = emailDatabase.getInbox(userEmail);
-        System.out.println("Displaying " + inbox.size() + " emails in inbox.");
 
         // display email
         DefaultListModel<String> listModel = new DefaultListModel<>();
