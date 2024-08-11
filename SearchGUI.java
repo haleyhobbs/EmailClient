@@ -17,19 +17,17 @@ import java.io.IOException;
 
 public class SearchGUI extends JFrame {
     //fields
+    private String userEmail;
+    private FileHandler fileHandler;
     private JPanel contentPane;
     private JLabel lblSubjectSearch;
     private JTextField textFieldSubjectSearch;
     private JButton btnCancel;
     private JButton btnSearch;
     private DefaultListModel<String> listModel;
-    private JList<String> listEmails;
     private JScrollPane scrollPane;
-    private EmailDatabase emailDatabase;
-    private FileHandler fileHandler;
-    private String userEmail;
+    private JList<String> listEmails;
 
-    //constructor
     public SearchGUI(String userEmail, FileHandler fileHandler) {
         this.userEmail = userEmail;
         this.fileHandler = fileHandler;
@@ -43,11 +41,11 @@ public class SearchGUI extends JFrame {
         contentPane.setLayout(null);
 
         JLabel lblSubjectSearch = new JLabel("Subject:");
-        lblSubjectSearch.setBounds(17, 25, 61, 16);
+        lblSubjectSearch.setBounds(18, 25, 61, 16);
         contentPane.add(lblSubjectSearch);
 
         textFieldSubjectSearch = new JTextField();
-        textFieldSubjectSearch.setBounds(78, 20, 328, 26);
+        textFieldSubjectSearch.setBounds(77, 20, 328, 26);
         contentPane.add(textFieldSubjectSearch);
         textFieldSubjectSearch.setColumns(10);
 
@@ -66,17 +64,20 @@ public class SearchGUI extends JFrame {
                 performSearch();
             }
         });
-        btnSearch.setBounds(174, 50, 100, 26);
+        btnSearch.setBounds(174, 42, 100, 26);
         contentPane.add(btnSearch);
 
         listModel = new DefaultListModel<>();
-        listEmails = new JList<>(listModel);
-        
-        scrollPane = new JScrollPane(listEmails);
-        scrollPane.setBounds(10, 70, 420, 180);
+
+        scrollPane = new JScrollPane();
+        scrollPane.setBounds(6, 70, 438, 196);
         contentPane.add(scrollPane);
+
+        listEmails = new JList<>(listModel);
+        listEmails.setBounds(48, 72, 416, 176);
+        contentPane.add(listEmails);
         
-        //view email when user double-clicks
+        //display email when user double-clicks
         listEmails.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -107,13 +108,12 @@ public class SearchGUI extends JFrame {
 
                 listModel.clear();
 
-                //if email found, display
+                //if matching email found, display
                 for (Email email : emails) {
                     String emailSubject = email.getSubject().toLowerCase();
                     if (emailSubject.contains(subject))
                         listModel.addElement("From: " + email.getSender() + " - Subject: " + email.getSubject());
                 }
-
                 if (listModel.isEmpty())
                     listModel.addElement("No emails found with subject containing: " + subject);
             } catch (IOException e) {
