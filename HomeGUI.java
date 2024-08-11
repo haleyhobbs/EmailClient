@@ -7,6 +7,7 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.awt.event.ActionEvent;
+import java.io.IOException;
 
 public class HomeGUI extends JFrame {
     private JPanel contentPane;
