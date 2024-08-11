@@ -11,7 +11,6 @@ import java.awt.event.ActionEvent;
 public class HomeGUI extends JFrame {
     private JPanel contentPane;
     private JButton btnLoginSecondAcct;
-    private JButton btnLoginSecondAcct;
     private JButton btnCompose;
     private JButton btnInbox;
     private JButton btnLogout;
