@@ -1,10 +1,8 @@
-//libraries
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class EmailDatabase {
-    //fields
     private List<Email> emails;
     private FileHandler fileHandler;
     private String loggedInUser;
