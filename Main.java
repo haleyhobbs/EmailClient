@@ -1,8 +1,8 @@
 import java.io.File;
 
 public class Main {
-	private File emailDir;
-	private File[] files;
+	private static File emailDir;
+	private static File[] files;
 	
 	public static void main(String[] args) {
 		//delete emails at startup
