@@ -1,4 +1,3 @@
-//libraries
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -11,7 +10,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class LoginGUI extends JFrame {
-    //fields
     private JPanel contentPane;
     private JTextField textFieldAddress;
     private JTextField textFieldPassword;
