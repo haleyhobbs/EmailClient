@@ -16,16 +16,23 @@ import java.util.List;
 import java.io.IOException;
 
 public class SearchGUI extends JFrame {
-    private String userEmail;
     private FileHandler fileHandler;
-    private List<Email> searchResults;
     private JPanel contentPane;
     private JTextField textFieldSubjectSearch;
     private JButton btnCancel;
     private JButton btnSearch;
-    private DefaultListModel<String> listModel;
+    private JLabel lblSubjectSearch;
+    private JScrollPane scrollPane;
+    private String subject;
+    private String userEmail;
+    private String emailSubject;
+    private int index;
+    private Email email;
+    private List<Email> searchResults;
+    private List<Email> emails;
     private JList<String> listEmails;
-
+    private DefaultListModel<String> listModel;
+    
     public SearchGUI(String userEmail, FileHandler fileHandler) {
         this.userEmail = userEmail;
         this.fileHandler = fileHandler;
@@ -38,7 +45,7 @@ public class SearchGUI extends JFrame {
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
-        JLabel lblSubjectSearch = new JLabel("Subject:");
+        lblSubjectSearch = new JLabel("Subject:");
         lblSubjectSearch.setBounds(18, 25, 61, 16);
         contentPane.add(lblSubjectSearch);
 
@@ -69,7 +76,7 @@ public class SearchGUI extends JFrame {
 
         listEmails = new JList<>(listModel);
 
-        JScrollPane scrollPane = new JScrollPane(listEmails);
+        scrollPane = new JScrollPane(listEmails);
         scrollPane.setBounds(6, 70, 438, 196);
         contentPane.add(scrollPane);
 
@@ -79,11 +86,11 @@ public class SearchGUI extends JFrame {
             public void mouseClicked(MouseEvent e) {
 
                 if (e.getClickCount() == 2) {
-                    int index = listEmails.getSelectedIndex();
+                    index = listEmails.getSelectedIndex();
 
                     if (index >= 0 && index < searchResults.size()) {
                         System.out.print(index);
-                        Email email = searchResults.get(index);
+                        email = searchResults.get(index);
                         new EmailViewerGUI(email, fileHandler, userEmail).setVisible(true);
                     }
                 }
@@ -92,19 +99,18 @@ public class SearchGUI extends JFrame {
     }
 
     private List<Email> performSearch() {
-        String subject = textFieldSubjectSearch.getText().trim().toLowerCase();
-        List<Email> searchResults = new ArrayList<>();
+        subject = textFieldSubjectSearch.getText().trim().toLowerCase();
+        searchResults = new ArrayList<>();
 
         if (!subject.isEmpty()) {
             try {
-
-                List<Email> emails = fileHandler.readEmail(userEmail);
+                emails = fileHandler.readEmail(userEmail);
 
                 listModel.clear();
 
                 //if matching email found, display
                 for (Email email : emails) {
-                    String emailSubject = email.getSubject().toLowerCase();
+                    emailSubject = email.getSubject().toLowerCase();
                     if (emailSubject.contains(subject)) {
                         listModel.addElement("From: " + email.getSender() + " - Subject: " + email.getSubject());
                         searchResults.add(email);
