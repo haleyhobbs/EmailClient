@@ -11,6 +11,10 @@ import java.awt.event.ActionEvent;
 
 public class ComposeGUI extends JFrame {
 	private JPanel contentPane;
+	private JLabel lblRecipient;
+	private JLabel lblSubject;
+	private JButton btnSend;
+	private JButton btnCancel;
 	private JTextField textFieldSubject;
 	private JTextField textFieldRecipient;
 	private JTextField textFieldMessage;
@@ -35,7 +39,7 @@ public class ComposeGUI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JLabel lblRecipient = new JLabel("To:");
+		lblRecipient = new JLabel("To:");
 		lblRecipient.setBounds(6, 20, 61, 16);
 		contentPane.add(lblRecipient);
 
@@ -44,7 +48,7 @@ public class ComposeGUI extends JFrame {
 		contentPane.add(textFieldRecipient);
 		textFieldRecipient.setColumns(10);
 
-		JLabel lblSubject = new JLabel("Subject:");
+		lblSubject = new JLabel("Subject:");
 		lblSubject.setBounds(6, 53, 61, 16);
 		contentPane.add(lblSubject);
 
@@ -58,7 +62,7 @@ public class ComposeGUI extends JFrame {
 		contentPane.add(textFieldMessage);
 		textFieldMessage.setColumns(10);
 
-		JButton btnSend = new JButton("Send");
+		btnSend = new JButton("Send");
 		btnSend.setBounds(325, 245, 82, 29);
 		btnSend.addActionListener(e -> {
 			this.recipient = textFieldRecipient.getText();
@@ -83,7 +87,7 @@ public class ComposeGUI extends JFrame {
 		btnSend.setBounds(375, 240, 75, 26);
 		contentPane.add(btnSend);
 
-		JButton btnCancel = new JButton("X");
+		btnCancel = new JButton("X");
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
