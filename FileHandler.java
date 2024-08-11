@@ -66,4 +66,28 @@ public class FileHandler {
         return emails;
     }
 
+    public void removeEmail(String userEmail, Email email, EmailDataBase emailDatabase) throws IOException {
+
+        List<Email> emails = emailDatabase.getInbox(userEmail);
+        Path userDir = Paths.get(EMAIL_DIR, userEmail);
+        boolean emailDeleted = false;
+
+        for (Email e : emails) {
+            if (e.equals(email)) {
+                Path emailFile = userDir.resolve(email.getSubject() + ".txt");
+
+                System.out.println("Deleting email from: " + emailFile.toString());
+
+                emailDatabase.deleteEmail(userEmail, email, emailDatabase);
+                Files.delete(emailFile);
+                emails.remove(e);
+                emailDeleted = true;
+                break;
+            }
+        }
+
+        if (emailDeleted) {
+            emailDatabase.saveUserEmails();
+        }
+    }
 }
