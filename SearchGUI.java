@@ -1,4 +1,3 @@
-
 //libraries
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,7 +12,6 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JTextField;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.io.IOException;
@@ -23,14 +21,11 @@ public class SearchGUI extends JFrame {
     private String userEmail;
     private FileHandler fileHandler;
     private List<Email> searchResults;
-
     private JPanel contentPane;
-
     private JTextField textFieldSubjectSearch;
     private JButton btnCancel;
     private JButton btnSearch;
     private DefaultListModel<String> listModel;
-
     private JList<String> listEmails;
 
     public SearchGUI(String userEmail, FileHandler fileHandler) {
@@ -64,7 +59,6 @@ public class SearchGUI extends JFrame {
         contentPane.add(btnCancel);
 
         btnSearch = new JButton("Search");
-
         btnSearch.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 searchResults = performSearch();
@@ -81,8 +75,7 @@ public class SearchGUI extends JFrame {
         scrollPane.setBounds(6, 70, 438, 196);
         contentPane.add(scrollPane);
 
-        // display email
-
+        //display email
         listEmails.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -111,7 +104,7 @@ public class SearchGUI extends JFrame {
 
                 listModel.clear();
 
-                // if matching email found, display
+                //if matching email found, display
                 for (Email email : emails) {
                     String emailSubject = email.getSubject().toLowerCase();
                     if (emailSubject.contains(subject)) {
@@ -126,7 +119,6 @@ public class SearchGUI extends JFrame {
                 e.printStackTrace();
             }
         }
-
         return searchResults;
     }
 }
