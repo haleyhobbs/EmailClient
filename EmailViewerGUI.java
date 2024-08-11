@@ -1,4 +1,3 @@
-
 //libraries
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -7,9 +6,7 @@ public class EmailViewerGUI extends JFrame {
     // fields
     private JPanel contentPane;
 
-    // constructor
     public EmailViewerGUI(Email email, FileHandler fileHandler, String userEmail) {
-
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(100, 100, 450, 300);
 
@@ -32,7 +29,7 @@ public class EmailViewerGUI extends JFrame {
         JButton btnReply = new JButton("Reply");
         btnReply.setBounds(10, 240, 100, 30);
         btnReply.addActionListener(e -> {
-            // Open the ComposeGUI with the sender's email as the recipient
+            //automatically open the new ComposeGUI with the sender's email as the recipient
             ComposeGUI composeGUI = new ComposeGUI(userEmail, email.getSender());
             composeGUI.setVisible(true);
             dispose(); // Close the email viewer
@@ -46,5 +43,4 @@ public class EmailViewerGUI extends JFrame {
 
         setTitle("View Email");
     }
-
 }
