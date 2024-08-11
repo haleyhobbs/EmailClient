@@ -22,6 +22,11 @@ public class InboxGUI extends JFrame {
     private JScrollPane scrollPane;
     private JButton btnDelete;
     private JButton btnCancel;
+    private Email email;
+    private List<Email> inbox;
+    private DefaultListModel<String> listModel;
+    private FileHandler fileHandler;
+    private int index;
 
     public InboxGUI(String userEmail) throws IOException {
         //load emails in database
@@ -41,10 +46,10 @@ public class InboxGUI extends JFrame {
         lblInbox.setBounds(172, 20, 92, 36);
         contentPane.add(lblInbox);
 
-        List<Email> inbox = emailDatabase.getInbox(userEmail);
+        inbox = emailDatabase.getInbox(userEmail);
 
         //display email
-        DefaultListModel<String> listModel = new DefaultListModel<>();
+        listModel = new DefaultListModel<>();
         for (Email email : inbox)
             listModel.addElement("From: " + email.getSender() + " - Subject: " + email.getSubject());
         listEmails = new JList<>(listModel);
@@ -58,9 +63,9 @@ public class InboxGUI extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 2) {
-                    int index = listEmails.getSelectedIndex();
+                    index = listEmails.getSelectedIndex();
                     if (index >= 0) {
-                        Email email = inbox.get(index);
+                        email = inbox.get(index);
                         new EmailViewerGUI(email, null, userEmail).setVisible(true);
                     }
                 }
@@ -72,8 +77,8 @@ public class InboxGUI extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 int index = listEmails.getSelectedIndex();
                 if (index >= 0) {
-                    Email email = inbox.get(index);
-                    FileHandler fileHandler = new FileHandler();
+                    email = inbox.get(index);
+                    fileHandler = new FileHandler();
                     try {
                         //delete email from database
                         fileHandler.removeEmail(userEmail, email, emailDatabase);
