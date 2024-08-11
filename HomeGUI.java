@@ -11,6 +11,12 @@ import java.awt.event.ActionEvent;
 public class HomeGUI extends JFrame {
     private JPanel contentPane;
     private JButton btnLoginSecondAcct;
+    private JButton btnLoginSecondAcct;
+    private JButton btnCompose;
+    private JButton btnInbox;
+    private JButton btnLogout;
+    private JLabel lblEmail;
+    private JLabel lblAcctName;
 
     public HomeGUI(String userEmail) {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -21,7 +27,7 @@ public class HomeGUI extends JFrame {
         contentPane.setLayout(null);
 
         //if user wants to login to second account, start with new login gui
-        JButton btnLoginSecondAcct = new JButton("Login to another account");
+        btnLoginSecondAcct = new JButton("Login to another account");
         btnLoginSecondAcct.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 LoginGUI loginFrame2 = new LoginGUI();
@@ -31,12 +37,12 @@ public class HomeGUI extends JFrame {
         btnLoginSecondAcct.setBounds(124, 168, 196, 29);
         contentPane.add(btnLoginSecondAcct);
 
-        JLabel lblEmail = new JLabel("Email");
+        lblEmail = new JLabel("Email");
         lblEmail.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
         lblEmail.setBounds(183, 26, 86, 41);
         contentPane.add(lblEmail);
 
-        JButton btnCompose = new JButton("Compose email");
+        btnCompose = new JButton("Compose email");
         btnCompose.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 ComposeGUI composeFrame = new ComposeGUI(userEmail);
@@ -46,7 +52,7 @@ public class HomeGUI extends JFrame {
         btnCompose.setBounds(124, 79, 196, 29);
         contentPane.add(btnCompose);
 
-        JButton btnInbox = new JButton("View inbox");
+        btnInbox = new JButton("View inbox");
         btnInbox.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 InboxGUI inboxFrame;
@@ -72,7 +78,7 @@ public class HomeGUI extends JFrame {
         btnSearch.setBounds(124, 138, 196, 29);
         contentPane.add(btnSearch);
 
-        JButton btnLogout = new JButton("Logout");
+        btnLogout = new JButton("Logout");
         btnLogout.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 dispose();
@@ -81,7 +87,7 @@ public class HomeGUI extends JFrame {
         btnLogout.setBounds(124, 196, 196, 29);
         contentPane.add(btnLogout);
 
-        JLabel lblAcctName = new JLabel("");
+        lblAcctName = new JLabel("");
         lblAcctName.setBounds(383, 6, 61, 16);
         contentPane.add(lblAcctName);
     }
