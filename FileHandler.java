@@ -7,4 +7,17 @@ public class FileHandler {
 
     private static final String EMAIL_DIR = "emails";
 
+    public FileHandler() {
+
+        Path path = Paths.get(EMAIL_DIR);
+        if (!Files.exists(path)) {
+            try {
+                Files.createDirectory(path);
+            } catch (IOException e) {
+                e.printStackTrace();
+
+            }
+        }
+    }
+
 }
