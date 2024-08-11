@@ -1,3 +1,4 @@
+
 //libraries
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -13,56 +14,57 @@ import java.awt.event.ActionListener;
 import java.util.List;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 
 public class InboxGUI extends JFrame {
-    //fields
+    // fields
     private EmailDatabase emailDatabase;
-	private JPanel contentPane;
-	private JLabel lblInbox;
+    private JPanel contentPane;
+    private JLabel lblInbox;
     private List<Email> inbox;
     private DefaultListModel<String> listModel;
     private JList<String> listEmails;
     private JScrollPane scrollPane;
     private JButton btnCancel;
-	private String userEmail;
-	
-    //constructor
-	public InboxGUI(String userEmail) {
-        //load emails in database
-		this.userEmail = userEmail;
-		emailDatabase = new EmailDatabase(userEmail);
+    private String userEmail;
+
+    // constructor
+    public InboxGUI(String userEmail) {
+        // load emails in database
+        this.userEmail = userEmail;
+        emailDatabase = new EmailDatabase(userEmail);
         emailDatabase.loadUserEmails(userEmail);
-		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
 
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
-		
-		JLabel lblInbox = new JLabel("Inbox");
-		lblInbox.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
-		lblInbox.setBounds(172, 20, 92, 36);
-		contentPane.add(lblInbox);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setBounds(100, 100, 450, 300);
 
-		List<Email> inbox = emailDatabase.getInbox(userEmail);
-		System.out.println("Displaying " + inbox.size() + " emails in inbox.");
-		
-        //display email
+        contentPane = new JPanel();
+        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+        setContentPane(contentPane);
+        contentPane.setLayout(null);
+
+        JLabel lblInbox = new JLabel("Inbox");
+        lblInbox.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
+        lblInbox.setBounds(172, 20, 92, 36);
+        contentPane.add(lblInbox);
+
+        List<Email> inbox = emailDatabase.getInbox(userEmail);
+        System.out.println("Displaying " + inbox.size() + " emails in inbox.");
+
+        // display email
         DefaultListModel<String> listModel = new DefaultListModel<>();
         for (Email email : inbox) {
-        	listModel.addElement("From: " + email.getSender() + " - Subject: " + email.getSubject());
+            listModel.addElement("From: " + email.getSender() + " - Subject: " + email.getSubject());
         }
         listEmails = new JList<>(listModel);
 
         JScrollPane scrollPane = new JScrollPane(listEmails);
         scrollPane.setBounds(10, 70, 420, 180);
         contentPane.add(scrollPane);
-      
-        //open email when user double-clicks
+
+        // open email when user double-clicks
         listEmails.addMouseListener(new MouseAdapter() {
-        	@Override
+            @Override
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 2) {
                     int index = listEmails.getSelectedIndex();
@@ -72,15 +74,41 @@ public class InboxGUI extends JFrame {
                     }
                 }
             }
-        });		
-		
-		JButton btnCancel = new JButton("X");
-		btnCancel.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-			}
-		});
-		btnCancel.setBounds(406, 0, 44, 26);
-		contentPane.add(btnCancel);
-	}
+        });
+
+        JButton btnDelete = new JButton("Delete");
+
+        btnDelete.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                int index = listEmails.getSelectedIndex();
+                if (index >= 0) {
+                    Email email = inbox.get(index);
+                    FileHandler fileHandler = new FileHandler();
+
+                    try {
+                        fileHandler.removeEmail(userEmail, email, emailDatabase);
+
+                        inbox.remove(index);
+                        listModel.remove(index);
+
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+            }
+        });
+
+        btnDelete.setFont(new Font("Lucida Grande", Font.PLAIN, 12));
+        btnDelete.setBounds(375, 240, 75, 26); // may need to adjust this
+        contentPane.add(btnDelete);
+
+        JButton btnCancel = new JButton("X");
+        btnCancel.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+            }
+        });
+        btnCancel.setBounds(406, 0, 44, 26);
+        contentPane.add(btnCancel);
+    }
 }
