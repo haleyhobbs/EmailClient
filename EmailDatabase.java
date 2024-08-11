@@ -64,4 +64,15 @@ public class EmailDatabase {
 
         return inbox;
     }
+
+    public void deleteEmail(String userEmail, Email emailDel, EmailDatabase emailDataBase) throws IOException {
+
+        emails.remove(emailDel);
+
+        fileHandler.removeEmail(userEmail, emailDel, emailDataBase);
+
+        System.out.println("Deleting email: " + emailDel.getSubject());
+
+        saveUserEmails();
+    }
 }
