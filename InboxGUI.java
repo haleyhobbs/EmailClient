@@ -59,7 +59,7 @@ public class InboxGUI extends JFrame {
         listEmails = new JList<>(listModel);
 
         JScrollPane scrollPane = new JScrollPane(listEmails);
-        scrollPane.setBounds(10, 70, 420, 180);
+        scrollPane.setBounds(6, 54, 434, 184);
         contentPane.add(scrollPane);
 
         // open email when user double-clicks
