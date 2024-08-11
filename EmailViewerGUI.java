@@ -2,27 +2,13 @@
 //libraries
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import java.awt.event.ActionListener;
-import java.io.IOException;
-import java.util.List;
-import java.awt.event.ActionEvent;
 
 public class EmailViewerGUI extends JFrame {
     // fields
     private JPanel contentPane;
-    private JTextArea textArea;
-    private JScrollPane scrollPane;
-    private JButton btnClose;
-
-    private Email email;
-    private FileHandler fileHandler;
-    private String userEmail;
 
     // constructor
     public EmailViewerGUI(Email email, FileHandler fileHandler, String userEmail) {
-        this.email = email;
-        this.fileHandler = fileHandler;
-        this.userEmail = userEmail;
 
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(100, 100, 450, 300);

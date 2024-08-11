@@ -4,7 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
+
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Font;
@@ -15,17 +15,14 @@ import java.awt.event.ActionEvent;
 public class ComposeGUI extends JFrame {
 	// fields
 	private JPanel contentPane;
-	private JLabel lblRecipient;
-	private JLabel lblSubject;
+
 	private JTextField textFieldSubject;
 	private JTextField textFieldRecipient;
 	private JTextField textFieldMessage;
-	private JButton btnSend;
-	private JButton btnCancel;
+
 	private String recipient;
 	private String subject;
 	private String message;
-	private String sender;
 
 	// constructor when user doesn't enter recipient
 	public ComposeGUI(String sender) {
@@ -34,7 +31,7 @@ public class ComposeGUI extends JFrame {
 
 	// constructor when recipient is entered
 	public ComposeGUI(String sender, String recipient) {
-		this.sender = sender;
+
 		this.recipient = recipient;
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

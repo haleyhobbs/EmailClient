@@ -20,18 +20,13 @@ public class InboxGUI extends JFrame {
     // fields
     private EmailDatabase emailDatabase;
     private JPanel contentPane;
-    private JLabel lblInbox;
-    private List<Email> inbox;
-    private DefaultListModel<String> listModel;
+
     private JList<String> listEmails;
-    private JScrollPane scrollPane;
-    private JButton btnCancel;
-    private String userEmail;
 
     // constructor
     public InboxGUI(String userEmail) throws IOException {
         // load emails in database
-        this.userEmail = userEmail;
+
         emailDatabase = new EmailDatabase(userEmail);
         emailDatabase.loadUserEmails(userEmail);
 

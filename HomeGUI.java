@@ -7,23 +7,11 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.awt.event.ActionEvent;
-import java.io.IOException;
 
 public class HomeGUI extends JFrame {
     private JPanel contentPane;
-    private JButton btnLoginSecondAcct;
-    private JLabel lblEmail;
-    private JButton btnCompose;
-    private JButton btnInbox;
-    private JButton btnSearch;
-    private JButton btnLogout;
-    private JLabel lblAcctName;
-
-    private String userEmail;
-    private FileHandler fileHandler;
 
     public HomeGUI(String userEmail) {
-        this.userEmail = userEmail;
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 450, 300);

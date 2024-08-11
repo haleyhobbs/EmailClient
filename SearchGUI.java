@@ -25,12 +25,12 @@ public class SearchGUI extends JFrame {
     private List<Email> searchResults;
 
     private JPanel contentPane;
-    private JLabel lblSubjectSearch;
+
     private JTextField textFieldSubjectSearch;
     private JButton btnCancel;
     private JButton btnSearch;
     private DefaultListModel<String> listModel;
-    private JScrollPane scrollPane;
+
     private JList<String> listEmails;
 
     public SearchGUI(String userEmail, FileHandler fileHandler) {
