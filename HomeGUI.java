@@ -57,8 +57,13 @@ public class HomeGUI extends JFrame {
 		JButton btnInbox = new JButton("View inbox");
 		btnInbox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				InboxGUI inboxFrame = new InboxGUI(userEmail);
-				inboxFrame.setVisible(true);
+				InboxGUI inboxFrame;
+				try {
+					inboxFrame = new InboxGUI(userEmail);
+					inboxFrame.setVisible(true);
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
 			}
 		});
 		btnInbox.setBounds(124, 109, 196, 29);
