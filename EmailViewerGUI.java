@@ -1,9 +1,7 @@
-//libraries
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 public class EmailViewerGUI extends JFrame {
-    // fields
     private JPanel contentPane;
 
     public EmailViewerGUI(Email email, FileHandler fileHandler, String userEmail) {
