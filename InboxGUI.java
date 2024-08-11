@@ -1,4 +1,3 @@
-//libraries
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -16,7 +15,6 @@ import java.awt.event.MouseEvent;
 import java.io.IOException;
 
 public class InboxGUI extends JFrame {
-    // fields
     private EmailDatabase emailDatabase;
     private JPanel contentPane;
     private JList<String> listEmails;
