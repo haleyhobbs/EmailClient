@@ -51,4 +51,17 @@ public class EmailDatabase {
         recipientEmailDB.saveUserEmails();
 
     }
+
+    public List<Email> getInbox(String userEmail) {
+        List<Email> inbox = new ArrayList<>();
+        for (Email e : emails) {
+            if (e.getRecipient().equals(userEmail)) {
+                inbox.add(e);
+            }
+        }
+
+        System.out.println("Inbox contains " + inbox.size() + " emails for user: " + loggedInUser);
+
+        return inbox;
+    }
 }
