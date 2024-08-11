@@ -1,4 +1,3 @@
-
 public class Email {
     private String sender;
     private String subject;
@@ -13,18 +12,30 @@ public class Email {
     }
 
     public String getSender() {
-        return sender;
-    }
+		return sender;
+	}
+	public void setSender(String sender) {
+		this.sender = sender;
+	}
 
-    public String getSubject() {
-        return subject;
-    }
+	public String getSubject() {
+		return subject;
+	}
+	public void setSubject(String subject) {
+		this.subject = subject;
+	}
 
-    public String getRecipient() {
-        return recipient;
-    }
+	public String getRecipient() {
+		return recipient;
+	}
+	public void setRecipient(String recipient) {
+		this.recipient = recipient;
+	}
 
-    public String getEmailContent() {
-        return emailContent;
-    }
+	public String getEmailContent() {
+		return emailContent;
+	}
+	public void setEmailContent(String emailContent) {
+		this.emailContent = emailContent;
+	}
 }
