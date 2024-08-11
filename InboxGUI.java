@@ -18,6 +18,10 @@ public class InboxGUI extends JFrame {
     private EmailDatabase emailDatabase;
     private JPanel contentPane;
     private JList<String> listEmails;
+    private JLabel lblInbox;
+    private JScrollPane scrollPane;
+    private JButton btnDelete;
+    private JButton btnCancel;
 
     public InboxGUI(String userEmail) throws IOException {
         //load emails in database
@@ -32,7 +36,7 @@ public class InboxGUI extends JFrame {
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
-        JLabel lblInbox = new JLabel("Inbox");
+        lblInbox = new JLabel("Inbox");
         lblInbox.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
         lblInbox.setBounds(172, 20, 92, 36);
         contentPane.add(lblInbox);
@@ -45,7 +49,7 @@ public class InboxGUI extends JFrame {
             listModel.addElement("From: " + email.getSender() + " - Subject: " + email.getSubject());
         listEmails = new JList<>(listModel);
 
-        JScrollPane scrollPane = new JScrollPane(listEmails);
+        scrollPane = new JScrollPane(listEmails);
         scrollPane.setBounds(6, 54, 434, 184);
         contentPane.add(scrollPane);
 
@@ -63,7 +67,7 @@ public class InboxGUI extends JFrame {
             }
         });
 
-        JButton btnDelete = new JButton("Delete");
+        btnDelete = new JButton("Delete");
         btnDelete.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 int index = listEmails.getSelectedIndex();
@@ -85,7 +89,7 @@ public class InboxGUI extends JFrame {
         btnDelete.setBounds(375, 240, 75, 26); // may need to adjust this
         contentPane.add(btnDelete);
 
-        JButton btnCancel = new JButton("X");
+        btnCancel = new JButton("X");
         btnCancel.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 dispose();
