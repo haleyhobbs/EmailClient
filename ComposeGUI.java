@@ -1,3 +1,4 @@
+
 //libraries
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -11,11 +12,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class ComposeGUI extends JFrame {
-    //fields
+	// fields
 	private JPanel contentPane;
-    private JLabel lblRecipient;
-    private JLabel lblSubject;
-    private JTextField textFieldSubject;
+	private JLabel lblRecipient;
+	private JLabel lblSubject;
+	private JTextField textFieldSubject;
 	private JTextField textFieldRecipient;
 	private JTextField textFieldMessage;
 	private JButton btnSend;
@@ -24,17 +25,17 @@ public class ComposeGUI extends JFrame {
 	private String subject;
 	private String message;
 	private String sender;
-	
-    //constructor when user doesn't enter recipient
+
+	// constructor when user doesn't enter recipient
 	public ComposeGUI(String sender) {
 		this(sender, "");
 	}
-	
-    //constructor when recipient is entered
+
+	// constructor when recipient is entered
 	public ComposeGUI(String sender, String recipient) {
-        this.sender = sender;
+		this.sender = sender;
 		this.recipient = recipient;
-		
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 
@@ -42,49 +43,49 @@ public class ComposeGUI extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JLabel lblRecipient = new JLabel("To:");
 		lblRecipient.setBounds(6, 20, 61, 16);
 		contentPane.add(lblRecipient);
-		
+
 		textFieldRecipient = new JTextField(recipient);
 		textFieldRecipient.setBounds(79, 15, 331, 26);
 		contentPane.add(textFieldRecipient);
 		textFieldRecipient.setColumns(10);
-		
+
 		JLabel lblSubject = new JLabel("Subject:");
 		lblSubject.setBounds(6, 53, 61, 16);
 		contentPane.add(lblSubject);
-		
+
 		textFieldSubject = new JTextField();
 		textFieldSubject.setBounds(78, 48, 331, 26);
 		contentPane.add(textFieldSubject);
 		textFieldSubject.setColumns(10);
-		
+
 		textFieldMessage = new JTextField();
 		textFieldMessage.setBounds(6, 76, 438, 165);
 		contentPane.add(textFieldMessage);
 		textFieldMessage.setColumns(10);
-		
+
 		JButton btnSend = new JButton("Send");
-        btnSend.setBounds(325, 245, 82, 29);
-        btnSend.addActionListener(e -> {
-            this.recipient = textFieldRecipient.getText();
-            this.subject = textFieldSubject.getText();
-            this.message = textFieldMessage.getText();
-          
-            //create email object with user-entered information
-            Email email = new Email(sender, this.recipient, this.subject, this.message);
-            //add email to database
-            EmailDatabase emailDatabase = new EmailDataBase(sender);
-            emailDatabase.sendEmail(email);
-            JOptionPane.showMessageDialog(null, "Email sent successfully!");
-            dispose();
-       });
+		btnSend.setBounds(325, 245, 82, 29);
+		btnSend.addActionListener(e -> {
+			this.recipient = textFieldRecipient.getText();
+			this.subject = textFieldSubject.getText();
+			this.message = textFieldMessage.getText();
+
+			// create email object with user-entered information
+			Email email = new Email(sender, this.recipient, this.subject, this.message);
+			// add email to database
+			EmailDatabase emailDatabase = new EmailDatabase(sender);
+			emailDatabase.sendEmail(email);
+
+			dispose();
+		});
 		btnSend.setFont(new Font("Lucida Grande", Font.PLAIN, 12));
 		btnSend.setBounds(375, 240, 75, 26);
 		contentPane.add(btnSend);
-		
+
 		JButton btnCancel = new JButton("X");
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -95,4 +96,3 @@ public class ComposeGUI extends JFrame {
 		contentPane.add(btnCancel);
 	}
 }
-
