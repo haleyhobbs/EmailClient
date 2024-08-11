@@ -18,12 +18,12 @@ public class ComposeGUI extends JFrame {
 	private String subject;
 	private String message;
 
-	// constructor when user doesn't enter recipient
+	//constructor when user doesn't enter recipient
 	public ComposeGUI(String sender) {
 		this(sender, "");
 	}
 
-	// constructor when recipient is entered
+	//constructor when recipient is entered (automatically filled when replying)
 	public ComposeGUI(String sender, String recipient) {
 		this.recipient = recipient;
 
