@@ -3,9 +3,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EmailDatabase {
-    private List<Email> emails;
-    private FileHandler fileHandler;
     private String loggedInUser;
+    private List<Email> emails;
+    private List<Email> inbox;
+    private EmailDatabase recipientEmailDB;
+    private FileHandler fileHandler;
 
     public EmailDatabase(String sender) throws IOException {
         fileHandler = new FileHandler();
@@ -34,14 +36,14 @@ public class EmailDatabase {
     }
 
     public void sendEmail(Email email) throws IOException {
-        EmailDatabase recipientEmailDB = new EmailDatabase(email.getRecipient());
+        recipientEmailDB = new EmailDatabase(email.getRecipient());
         recipientEmailDB.loadUserEmails(email.getRecipient());
         recipientEmailDB.emails.add(email);
         recipientEmailDB.saveUserEmails();
     }
 
     public List<Email> getInbox(String userEmail) throws IOException {
-        List<Email> inbox = new ArrayList<>();
+        inbox = new ArrayList<>();
         for (Email e : emails) {
             if (e.getRecipient().equals(userEmail))
                 inbox.add(e);
