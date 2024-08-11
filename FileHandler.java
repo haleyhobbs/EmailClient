@@ -20,4 +20,23 @@ public class FileHandler {
         }
     }
 
+    public void saveEmail(String userEmail, List<Email> emails) throws IOException {
+
+        Path userDir = Paths.get(EMAIL_DIR, userEmail);
+        if (!Files.exists(userDir)) {
+            Files.createDirectory(userDir);
+        }
+
+        for (Email email : emails) {
+            Path emailFile = userDir.resolve(email.getSubject() + ".txt"); // Using subject as filename
+
+            try (BufferedWriter writer = Files.newBufferedWriter(emailFile)) {
+                writer.write("From: " + email.getSender() + "\n");
+                writer.write("To: " + email.getRecipient() + "\n");
+                writer.write("Subject: " + email.getSubject() + "\n");
+                writer.write(email.getEmailContent() + "\n");
+            }
+        }
+    }
+
 }
