@@ -1,3 +1,4 @@
+//libraries
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -10,10 +11,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class LoginGUI extends JFrame {
+    //fields
     private JPanel contentPane;
     private JTextField textFieldAddress;
     private JTextField textFieldPassword;
-
     private String address;
     private String password;
 
@@ -46,10 +47,12 @@ public class LoginGUI extends JFrame {
         JButton btnLogin = new JButton("Login");
         btnLogin.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                //get user-entered username/password and check
                 address = textFieldAddress.getText();
                 password = textFieldPassword.getText();
                 String loggedIn = checkCredentials(address, password);
 
+                //if login valid, display home screen; else show message
                 if (loggedIn != null) {
                     HomeGUI homeFrame = new HomeGUI(loggedIn);
                     homeFrame.setVisible(true);
@@ -85,6 +88,7 @@ public class LoginGUI extends JFrame {
         contentPane.add(btnCancel);
     }
 
+    //check if entered username/password are valid
     String checkCredentials(String address, String password) {
         if ((address.equals("guest1@gmail.com") && password.equals("OOP1"))
                 || (address.equals("guest2@nyu.edu") && password.equals("OOP2")))
@@ -92,5 +96,4 @@ public class LoginGUI extends JFrame {
         else
             return null;
     }
-
 }
