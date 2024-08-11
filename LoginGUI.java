@@ -13,14 +13,15 @@ public class LoginGUI extends JFrame {
     private JPanel contentPane;
     private JTextField textFieldAddress;
     private JTextField textFieldPassword;
-    private String address;
-    private String password;
     private JLabel lblAddress;
     private JLabel lblPassword;
     private JLabel lblEmail;
     private JButton btnLogin;
     private JButton btnQuit;
     private JButton btnCancel;
+    private String address;
+    private String password;
+    private String loggedIn;
 
     public LoginGUI() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -55,7 +56,7 @@ public class LoginGUI extends JFrame {
                 //get user-entered username/password and check
                 address = textFieldAddress.getText();
                 password = textFieldPassword.getText();
-                String loggedIn = checkCredentials(address, password);
+                loggedIn = checkCredentials(address, password);
 
                 //if login valid, display home screen; else show message
                 if (loggedIn != null) {
