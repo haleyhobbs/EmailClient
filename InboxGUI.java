@@ -1,4 +1,3 @@
-
 //libraries
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -20,13 +19,10 @@ public class InboxGUI extends JFrame {
     // fields
     private EmailDatabase emailDatabase;
     private JPanel contentPane;
-
     private JList<String> listEmails;
 
-    // constructor
     public InboxGUI(String userEmail) throws IOException {
-        // load emails in database
-
+        //load emails in database
         emailDatabase = new EmailDatabase(userEmail);
         emailDatabase.loadUserEmails(userEmail);
 
@@ -45,18 +41,17 @@ public class InboxGUI extends JFrame {
 
         List<Email> inbox = emailDatabase.getInbox(userEmail);
 
-        // display email
+        //display email
         DefaultListModel<String> listModel = new DefaultListModel<>();
-        for (Email email : inbox) {
+        for (Email email : inbox)
             listModel.addElement("From: " + email.getSender() + " - Subject: " + email.getSubject());
-        }
         listEmails = new JList<>(listModel);
 
         JScrollPane scrollPane = new JScrollPane(listEmails);
         scrollPane.setBounds(6, 54, 434, 184);
         contentPane.add(scrollPane);
 
-        // open email when user double-clicks
+        //display email
         listEmails.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -71,27 +66,23 @@ public class InboxGUI extends JFrame {
         });
 
         JButton btnDelete = new JButton("Delete");
-
         btnDelete.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 int index = listEmails.getSelectedIndex();
                 if (index >= 0) {
                     Email email = inbox.get(index);
                     FileHandler fileHandler = new FileHandler();
-
                     try {
+                        //delete email from database
                         fileHandler.removeEmail(userEmail, email, emailDatabase);
-
                         inbox.remove(index);
                         listModel.remove(index);
-
                     } catch (IOException e1) {
                         e1.printStackTrace();
                     }
                 }
             }
         });
-
         btnDelete.setFont(new Font("Lucida Grande", Font.PLAIN, 12));
         btnDelete.setBounds(375, 240, 75, 26); // may need to adjust this
         contentPane.add(btnDelete);
