@@ -13,18 +13,16 @@ public class EmailViewerGUI extends JFrame {
     private JTextArea textArea;
     private JScrollPane scrollPane;
     private JButton btnClose;
-    private JButton btnDelete;
+
     private Email email;
     private FileHandler fileHandler;
     private String userEmail;
-    private EmailDatabase emailDatabase;
 
     // constructor
-    public EmailViewerGUI(Email email, FileHandler fileHandler, String userEmail, EmailDatabase emailDatabase) {
+    public EmailViewerGUI(Email email, FileHandler fileHandler, String userEmail) {
         this.email = email;
         this.fileHandler = fileHandler;
         this.userEmail = userEmail;
-        this.emailDatabase = emailDatabase;
 
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(100, 100, 450, 300);
@@ -59,21 +57,6 @@ public class EmailViewerGUI extends JFrame {
         btnClose.setBounds(290, 237, 100, 30);
         btnClose.addActionListener(e -> dispose());
         contentPane.add(btnClose);
-
-        JButton btnDelete = new JButton("Delete");
-        btnDelete.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    fileHandler.removeEmail(userEmail, email, emailDatabase);
-                } catch (IOException e1) {
-                    // TODO Auto-generated catch block
-                    e1.printStackTrace();
-                }
-                dispose();
-            }
-        });
-        btnDelete.setBounds(150, 240, 100, 30);
-        contentPane.add(btnDelete);
 
         setTitle("View Email");
     }

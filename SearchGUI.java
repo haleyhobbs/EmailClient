@@ -20,6 +20,7 @@ public class SearchGUI extends JFrame {
     // fields
     private String userEmail;
     private FileHandler fileHandler;
+
     private JPanel contentPane;
     private JLabel lblSubjectSearch;
     private JTextField textFieldSubjectSearch;
