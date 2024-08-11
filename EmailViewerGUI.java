@@ -17,6 +17,7 @@ public class EmailViewerGUI extends JFrame {
     private Email email;
     private FileHandler fileHandler;
     private String userEmail;
+    private EmailDatabase emailDatabase;
 
     // constructor
     public EmailViewerGUI(Email email, FileHandler fileHandler, String userEmail) {
@@ -61,7 +62,12 @@ public class EmailViewerGUI extends JFrame {
         JButton btnDelete = new JButton("Delete");
         btnDelete.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                deleteEmail();
+                try {
+                    fileHandler.removeEmail(userEmail, email, emailDatabase);
+                } catch (IOException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
                 dispose();
             }
         });
