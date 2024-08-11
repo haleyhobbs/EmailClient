@@ -1,10 +1,7 @@
-
-//libraries
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
-
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Font;
@@ -13,13 +10,10 @@ import java.io.IOException;
 import java.awt.event.ActionEvent;
 
 public class ComposeGUI extends JFrame {
-	// fields
 	private JPanel contentPane;
-
 	private JTextField textFieldSubject;
 	private JTextField textFieldRecipient;
 	private JTextField textFieldMessage;
-
 	private String recipient;
 	private String subject;
 	private String message;
@@ -31,7 +25,6 @@ public class ComposeGUI extends JFrame {
 
 	// constructor when recipient is entered
 	public ComposeGUI(String sender, String recipient) {
-
 		this.recipient = recipient;
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -72,9 +65,10 @@ public class ComposeGUI extends JFrame {
 			this.subject = textFieldSubject.getText();
 			this.message = textFieldMessage.getText();
 
-			// create email object with user-entered information
+			//create email object with user-entered information
 			Email email = new Email(sender, this.recipient, this.subject, this.message);
-			// add email to database
+			
+			//add email to database
 			EmailDatabase emailDatabase;
 			try {
 				emailDatabase = new EmailDatabase(sender);
@@ -83,7 +77,6 @@ public class ComposeGUI extends JFrame {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-
 			dispose();
 		});
 		btnSend.setFont(new Font("Lucida Grande", Font.PLAIN, 12));
