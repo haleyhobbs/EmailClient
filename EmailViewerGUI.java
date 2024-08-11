@@ -55,7 +55,7 @@ public class EmailViewerGUI extends JFrame {
         contentPane.add(btnReply);
 
         JButton btnClose = new JButton("Close");
-        btnClose.setBounds(227, 237, 217, 29);
+        btnClose.setBounds(290, 237, 100, 30);
         btnClose.addActionListener(e -> dispose());
         contentPane.add(btnClose);
 
@@ -71,7 +71,7 @@ public class EmailViewerGUI extends JFrame {
                 dispose();
             }
         });
-        btnDelete.setBounds(230, 240, 100, 30);
+        btnDelete.setBounds(150, 240, 100, 30);
         contentPane.add(btnDelete);
 
         setTitle("View Email");
