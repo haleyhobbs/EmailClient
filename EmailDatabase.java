@@ -1,6 +1,7 @@
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.FileHandler;
 
 public class EmailDatabase {
 
@@ -12,5 +13,18 @@ public class EmailDatabase {
         fileHandler = new FileHandler();
         emails = new ArrayList<>();
         loggedInUser = sender;
+    }
+
+    public void loadUserEmails(String userEmail) {
+        loggedInUser = userEmail;
+        try {
+            emails = fileHandler.readEmail(userEmail);
+
+            System.out.println("Loaded " + emails.size() + " emails for user: " + loggedInUser);
+
+        } catch (IOException e) {
+            emails = new ArrayList<>();
+            e.printStackTrace();
+        }
     }
 }
