@@ -1,3 +1,4 @@
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -51,6 +52,7 @@ public class EmailDatabase {
         return inbox;
     }
 
+    //change emailDataBase name?
     public void deleteEmail(String userEmail, Email emailDel, EmailDatabase emailDataBase) throws IOException {
         emails.remove(emailDel);
         saveUserEmails();
