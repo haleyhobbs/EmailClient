@@ -79,7 +79,7 @@ public class FileHandler {
         for (Email e : emails) {
             if (e.equals(email)) {
                 emailFile = userDir.resolve(email.getSubject() + ".txt");
-                emailDatabase.deleteEmail(userEmail, email, emailDatabase);
+                emailDatabase.deleteEmail(email);
                 Files.delete(emailFile);
                 emails.remove(e);
                 emailDeleted = true;
