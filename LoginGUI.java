@@ -1,3 +1,4 @@
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -22,6 +23,7 @@ public class LoginGUI extends JFrame {
     private String address;
     private String password;
     private String loggedIn;
+    private HomeGUI homeFrame;
 
     public LoginGUI() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -60,7 +62,7 @@ public class LoginGUI extends JFrame {
 
                 //if login valid, display home screen; else show message
                 if (loggedIn != null) {
-                    HomeGUI homeFrame = new HomeGUI(loggedIn);
+                    homeFrame = new HomeGUI(loggedIn);
                     homeFrame.setVisible(true);
                     dispose();
                 } else
