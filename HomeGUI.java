@@ -1,3 +1,4 @@
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -18,6 +19,9 @@ public class HomeGUI extends JFrame {
     private JLabel lblEmail;
     private JLabel lblAcctName;
     private InboxGUI inboxFrame;
+    private SearchGUI searchFrame;
+    private ComposeGUI composeFrame;
+    private LoginGUI loginFrame2;
     private FileHandler fileHandler;
 
     public HomeGUI(String userEmail) {
@@ -32,7 +36,7 @@ public class HomeGUI extends JFrame {
         btnLoginSecondAcct = new JButton("Login to another account");
         btnLoginSecondAcct.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                LoginGUI loginFrame2 = new LoginGUI();
+                loginFrame2 = new LoginGUI();
                 loginFrame2.setVisible(true);
             }
         });
@@ -47,7 +51,7 @@ public class HomeGUI extends JFrame {
         btnCompose = new JButton("Compose email");
         btnCompose.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                ComposeGUI composeFrame = new ComposeGUI(userEmail);
+                composeFrame = new ComposeGUI(userEmail);
                 composeFrame.setVisible(true);
             }
         });
@@ -72,7 +76,7 @@ public class HomeGUI extends JFrame {
         btnSearch.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 fileHandler = new FileHandler();
-                SearchGUI searchFrame = new SearchGUI(userEmail, fileHandler);
+                searchFrame = new SearchGUI(userEmail, fileHandler);
                 searchFrame.setVisible(true);
             }
         });
