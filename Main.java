@@ -1,8 +1,10 @@
+
 import java.io.File;
 
 public class Main {
 	private static File emailDir;
 	private static File[] files;
+	public static LoginGUI loginFrame1;
 	
 	public static void main(String[] args) {
 		//delete emails at startup
@@ -10,7 +12,7 @@ public class Main {
 		deleteDirectory(emailDir);
 
 		//initialize and show login frame upon running program
-		LoginGUI loginFrame1 = new LoginGUI();
+		loginFrame1 = new LoginGUI();
 		loginFrame1.setVisible(true);
 	}
 
