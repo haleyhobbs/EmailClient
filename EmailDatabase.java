@@ -52,8 +52,7 @@ public class EmailDatabase {
         return inbox;
     }
 
-    //change emailDataBase name?
-    public void deleteEmail(String userEmail, Email emailDel, EmailDatabase emailDataBase) throws IOException {
+    public void deleteEmail(String userEmail, Email emailDel, EmailDatabase emailDatabase) throws IOException {
         emails.remove(emailDel);
         saveUserEmails();
     }
