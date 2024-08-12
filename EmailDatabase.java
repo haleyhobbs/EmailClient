@@ -52,7 +52,7 @@ public class EmailDatabase {
         return inbox;
     }
 
-    public void deleteEmail(String userEmail, Email emailDel, EmailDatabase emailDatabase) throws IOException {
+    public void deleteEmail(Email emailDel) throws IOException {
         emails.remove(emailDel);
         saveUserEmails();
     }
