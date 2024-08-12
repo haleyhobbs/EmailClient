@@ -4,7 +4,7 @@ import java.io.File;
 public class Main {
 	private static File emailDir;
 	private static File[] files;
-	public static LoginGUI loginFrame1;
+	private static LoginGUI loginFrame1;
 	
 	public static void main(String[] args) {
 		//delete emails at startup
