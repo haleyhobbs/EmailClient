@@ -1,3 +1,4 @@
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
@@ -7,6 +8,7 @@ public class EmailViewerGUI extends JFrame {
     private JScrollPane scrollPane;
     private JButton btnReply;
     private JButton btnClose;
+    private ComposeGUI composeGUI;
 
     public EmailViewerGUI(Email email, FileHandler fileHandler, String userEmail) {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -32,7 +34,7 @@ public class EmailViewerGUI extends JFrame {
         btnReply.setBounds(10, 240, 100, 30);
         btnReply.addActionListener(e -> {
             //automatically open the new ComposeGUI with the sender's email as the recipient
-            ComposeGUI composeGUI = new ComposeGUI(userEmail, email.getSender());
+            composeGUI = new ComposeGUI(userEmail, email.getSender());
             composeGUI.setVisible(true);
             dispose();
         });
